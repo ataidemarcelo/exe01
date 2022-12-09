@@ -4,10 +4,11 @@
 - Node JS
 - Express
 - Sequelize
-- Jest
+- Mocha | Chai | Sinon 
 
 ### Frontend
 - React
+- Jest
 - React Test Library
 
 ### Outros
