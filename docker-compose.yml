@@ -1,0 +1,65 @@
+version: '3'
+services:
+
+  front:
+    container_name: front
+    build: ./frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - back
+      - db
+    command: bash -c "npm start"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./frontend/:/app/
+    networks:
+      - public
+    restart: always
+
+  back:
+    container_name: back
+    build: ./backend
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
+    volumes:
+      - ./backend/:/src/
+    command: bash -c "npm install && npm run dev"
+    tty: true
+    stdin_open: true
+    secrets:
+      - db-password
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DB_NAME=blog-api
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=/run/secrets/db-password
+    networks:
+      - public
+      - private
+    restart: always
+
+  db:
+    image: mysql:8.0.23
+    container_name: db
+    ports:
+      - 3306:3306
+    volumes:
+      - ./backend/database/data/:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
+    secrets:
+      - db-password
+    networks:
+      - private
+
+networks:
+  public:
+  private:
+secrets:
+  db-password:
+    file: backend/database/password.txt
