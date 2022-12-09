@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ataidemarcelo/exe01/issues"
   },
-  "homepage": "https://github.com/ataidemarcelo/exe01#readme"
+  "homepage": "https://github.com/ataidemarcelo/exe01#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.4.0"
+  }
 }
