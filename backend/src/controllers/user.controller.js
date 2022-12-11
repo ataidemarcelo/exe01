@@ -1,10 +1,11 @@
 const { userFieldsSchema } = require('./validations/schema.user');
 
-const createNewUser = (req, res) => {
+const createNewUser = (req, res, next) => {
   const { error, value } = userFieldsSchema.validate(req.body);
 
   if (error) {
-    res.status(400).json({ message: error.details[0].message });
+    error.statusCode = 400;
+    return next(error);
   }
 
   // Services (regras de negócio)
