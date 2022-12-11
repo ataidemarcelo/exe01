@@ -1,6 +1,7 @@
 const { userFieldsSchema } = require('./validations/schema.user');
+const { userService } = require('../services');
 
-const createNewUser = (req, res, next) => {
+const createNewUser = async (req, res, next) => {
   const { error, value } = userFieldsSchema.validate(req.body);
 
   if (error) {
@@ -8,9 +9,15 @@ const createNewUser = (req, res, next) => {
     return next(error);
   }
 
-  // Services (regras de negócio)
-    // Validar se usuário já existe -> checkUserExist 409
-    // Adicionar novo usuário no DB -> addUser 201
+  const userExist = await userService.checkUserExist(value.email);
+
+  if (userExist) {
+    const newError = new Error('User already registered');
+    newError.statusCode = 409;
+    
+    return next(newError);
+  }
+  // Adicionar novo usuário no DB -> addUser 201
 
   return res.status(200).json({ value });
 };
