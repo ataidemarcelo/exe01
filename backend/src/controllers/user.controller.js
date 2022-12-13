@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 const { userFieldsSchema } = require('./validations/schema.user');
 const { userService } = require('../services');
 
@@ -18,9 +20,10 @@ const createNewUser = async (req, res, next) => {
     return next(newError);
   }
   const { displayName, email, password } = value;
-  // Criptografar senha!!!
+  
+  const hashedPassword = await bcrypt.hash(password, 8);
 
-  const newUser = await userService.addUser({ displayName, email, passwordHash: password });
+  const newUser = await userService.addUser({ displayName, email, passwordHash: hashedPassword });
 
   delete newUser.dataValues.passwordHash;
   return res.status(200).json(newUser);
