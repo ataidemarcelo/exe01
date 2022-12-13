@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const readFileSync = filename => fs.readFileSync(filename).toString("utf8");
 
-const environment = process.env.NODE_ENV || 'test';
+const environment = process.env.NODE_ENV || 'development';
 
 const suffix = {
   dev: '-dev',
