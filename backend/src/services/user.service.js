@@ -6,7 +6,11 @@ const checkUserExist = async (email) => {
   return exist;
 };
 
-const addUser = () => {};
+const addUser = async (dataToAddUser) => {
+  const newUser = await User.create(dataToAddUser);
+
+  return newUser;
+};
 
 module.exports = {
   checkUserExist,

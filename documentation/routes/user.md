@@ -27,20 +27,20 @@
 - Input (Request Body) (exemplo):
 ```json
 {
-  "displayName": "Marcelo Ataíde",
-  "email": "marcelo3@email.com",
+  "displayName": "User Um",
+  "email": "valid_email@email.com",
   "password": "123456",
-  "passwordConfirmation": "123456",
-  "image": "http://image.com"
+  "passwordConfirmation": "123456"
 }
 
 ```
 - Output (exemplo):
 ```json
 {
-  "id": 8,
-  "displayName": "Marcelo Ataíde",
-  "email": "marcelo3@email.com",
-  "image": "http://image.com"
+  "id": 01,
+  "displayName": "User Um",
+  "email": "valid_email@email.com",
+  "updatedAt": "2022-12-11T16:52:38.122Z",
+  "createdAt": "2022-12-11T16:52:38.122Z"
 }
 ```

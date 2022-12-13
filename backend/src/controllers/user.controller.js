@@ -17,9 +17,13 @@ const createNewUser = async (req, res, next) => {
     
     return next(newError);
   }
-  // Adicionar novo usuário no DB -> addUser 201
+  const { displayName, email, password } = value;
+  // Criptografar senha!!!
 
-  return res.status(200).json({ value });
+  const newUser = await userService.addUser({ displayName, email, passwordHash: password });
+
+  delete newUser.dataValues.passwordHash;
+  return res.status(200).json(newUser);
 };
 
 module.exports = {
