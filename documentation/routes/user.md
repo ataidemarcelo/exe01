@@ -12,9 +12,9 @@
 5. `400 - BAD_REQUEST` -> se os campos estão vazios ✅
 6. `400 - BAD_REQUEST` -> se não é um email válido ✅
 7. `400 - BAD_REQUEST` -> se o password não tem no mínimo 6 caracteres ✅
-8. `400 - BAD_REQUEST` -> se password e passwordConfirmation não são iguais
-9. `409 - CONFLICT` -> se usuário já existe
-10. `500 - INTERNAL_SERVER_ERROR` -> se der erro ao tentar criar a conta do usuário
+8. `400 - BAD_REQUEST` -> se password e passwordConfirmation não são iguais ✅
+9. `409 - CONFLICT` -> se usuário já existe ✅
+10. `500 - INTERNAL_SERVER_ERROR` -> se der erro ao tentar criar a conta do usuário ✅
 <br />
 </details>
 
