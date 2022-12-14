@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+}
+
+.headerContent {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  max-width: 1280px;
+  padding: 0 16px;
+}
+
+.toggleMenu {
+  cursor: pointer;
+}
+
+.linkContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  font-size: 1rem;
+}
