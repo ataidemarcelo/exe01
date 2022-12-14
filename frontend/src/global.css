@@ -7,11 +7,12 @@
   --l-border-bottom: 1px solid #d1cccc;
 
   /* Dark Mode */
-  --d-bg: #212529;
-  --d-color: #899095;
+  --d-bg: #181820;
+  --d-color: #d0d0d4;
   --d-link-color: #dee2e6;
   --d-link-color-hover: #3cc368;
   --d-border-bottom: 1px solid #5f5b5b;
+  --d-bg-input: #5f5b5b;
 }
 
 /* ============== Common ================ */
@@ -19,7 +20,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-};
+}
+
+body, input {
+  font-family: 'Roboto', sans-serif;
+}
 
 .wrapper {
   align-items: center;
@@ -27,7 +32,7 @@
   flex-direction: column;
   max-width: 100vw;
   min-height: 100vh;
-};
+}
 
 /* ============== Ligtht Mode ================ */
 
@@ -51,6 +56,19 @@
   border-bottom: var(--l-border-bottom);
 }
 
+#light form {
+  background-color: #f5f6f8;
+  box-shadow: 4px 4px 12px #c1c3c5;
+}
+
+#light form button {
+  background-color: #1AAE9F;
+}
+
+#light form button:hover {
+  background-color: #1dc4b3;
+}
+
 /* ============== Dark Mode ================ */
 
 #dark {
@@ -71,4 +89,36 @@
 
 #dark header {
   border-bottom: var(--d-border-bottom);
+}
+
+#dark form {
+  background-color: #212529;
+  box-shadow: 4px 4px 12px #2e343a;
+}
+
+#dark form input {
+  border: 0;
+  background: var(--d-bg-input);
+  color: #f4ede8;
+}
+
+#dark form input:-webkit-autofill {
+  box-shadow: 0 0 0 30px #5f5b5b inset;
+  -webkit-box-shadow: 0 0 0 30px #6b6666 inset;
+}
+
+#dark form input:-webkit-autofill {
+  -webkit-text-fill-color: #f4ede8 !important;
+}
+
+#dark form input::placeholder {
+  color: #666360;
+}
+
+#dark form button {
+  background-color: #1AAE9F;
+}
+
+#dark form button:hover {
+  background-color: #1dc4b3;
 }

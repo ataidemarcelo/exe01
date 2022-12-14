@@ -5,7 +5,21 @@ import styles from  './signin.module.css';
 const SignIn = () => { 
   return (
     <main className={styles.main}>
-      <h1>SignIn</h1>
+      <h1>Login</h1>
+      <form className={styles.form}>
+
+        <label>
+          Email:
+          <input type="text" name="email" placeholder="Email" />
+        </label>
+
+        <label>
+          Senha:
+          <input type="text" name="password" placeholder="Senha" />
+        </label>
+
+        <button type="submit" >Cadastrar</button>
+      </form>
     </main>
   );
 };
