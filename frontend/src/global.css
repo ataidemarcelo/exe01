@@ -14,23 +14,18 @@
 
 /* ============== Common ================ */
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 };
 
 .wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   max-width: 100vw;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 };
-
-
-body {
-  margin: 0;
-}
 
 /* ============== Ligtht Mode ================ */
 
@@ -41,9 +36,9 @@ body {
 
 #light a {
   background-color: var(--l-bg);
-  text-decoration: none;
   color: var(--l-link-color);
   cursor: pointer;
+  text-decoration: none;
 }
 
 #light a:hover {
@@ -63,9 +58,9 @@ body {
 
 #dark a {
   background-color: var(--d-bg);
-  text-decoration: none;
   color: var(--d-link-color);
   cursor: pointer;
+  text-decoration: none;
 }
 
 #dark a:hover {
