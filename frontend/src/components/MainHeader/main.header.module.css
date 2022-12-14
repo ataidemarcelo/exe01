@@ -18,9 +18,17 @@
 
 .linkContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
 }
 
 .btn {
   font-size: 1rem;
+}
+
+.themeMode {
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
 }

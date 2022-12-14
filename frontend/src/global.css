@@ -4,12 +4,14 @@
   --l-color: #555;
   --l-link-color: #222;
   --l-link-color-hover: #ec5840;
+  --l-border-bottom: 1px solid #d1cccc;
 
   /* Dark Mode */
   --d-bg: #212529;
   --d-color: #899095;
   --d-link-color: #dee2e6;
   --d-link-color-hover: #3cc368;
+  --d-border-bottom: 1px solid #5f5b5b;
 }
 
 /* ============== Common ================ */
@@ -46,7 +48,7 @@
 }
 
 #light header {
-  border-bottom: 1px solid rgb(209, 204, 204);
+  border-bottom: var(--l-border-bottom);
 }
 
 /* ============== Dark Mode ================ */
@@ -59,8 +61,8 @@
 #dark a {
   background-color: var(--d-bg);
   color: var(--d-link-color);
-  cursor: pointer;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #dark a:hover {
@@ -68,5 +70,5 @@
 }
 
 #dark header {
-  border-bottom: 1px solid rgb(95, 91, 91);
+  border-bottom: var(--d-border-bottom);
 }
