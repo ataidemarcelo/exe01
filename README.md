@@ -1,4 +1,4 @@
-## Continuação de desenvolvimento deste projeto para praticar contéudo estudado:
+## Projeto Blog API:
 
 Blog API é um projeto desenvolvido pela Trybe para ...
 
@@ -20,7 +20,7 @@ Esta seção busca colocar sob nova ótica o jeito com que você programa e o je
 <br />
 </details>
 
-Pratica adicionadas pro mim:
+Praticas adicionadas por mim:
 - Uma nova feature para ter os textos dos posts formatados(h2, p...)
   - envolveu a criação de novas tabelas ...
 - Adiconando testes de unidade e integração
