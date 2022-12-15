@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from  './signin.module.css';
 
-const SignIn = () => { 
+function SignIn() { 
   return (
     <main className={styles.main}>
       <h1>Login</h1>

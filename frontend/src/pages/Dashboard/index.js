@@ -1,11 +1,15 @@
 import React from 'react';
 
+import Sidebar from '../../components/Sidebar';
+import Content from '../../components/Content';
+
 import styles from  './dashboard.module.css';
 
-const Dashboard = () => { 
+function Dashboard() { 
   return (
     <main className={styles.main}>
-      <h1>Dashboard</h1>
+      <Sidebar />
+      <Content />
     </main>
   );
 };

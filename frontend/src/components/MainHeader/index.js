@@ -7,7 +7,7 @@ import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 import styles from './main.header.module.css';
 
-const MainHeader = () => {
+function MainHeader() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (

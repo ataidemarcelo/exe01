@@ -1,0 +1,35 @@
+.sidebar {
+  border-right: 1px solid #e1e1e1;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 300px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar h4 {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 20px;
+}
+
+.sidebar a {
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: none;
+}
+
+.selected {
+  background-color: #ec5840 !important;
+  color: aliceblue !important;
+  font-size: 26px;
+}
