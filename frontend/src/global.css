@@ -1,0 +1,124 @@
+:root {
+  /* Ligtht Mode */
+  --l-bg: #fafafa;
+  --l-color: #555;
+  --l-link-color: #222;
+  --l-link-color-hover: #ec5840;
+  --l-border-bottom: 1px solid #d1cccc;
+
+  /* Dark Mode */
+  --d-bg: #181820;
+  --d-color: #d0d0d4;
+  --d-link-color: #dee2e6;
+  --d-link-color-hover: #3cc368;
+  --d-border-bottom: 1px solid #5f5b5b;
+  --d-bg-input: #5f5b5b;
+}
+
+/* ============== Common ================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, input {
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+/* ============== Ligtht Mode ================ */
+
+#light {
+  background-color: var(--l-bg);
+  color: var(--l-color);
+}
+
+#light a {
+  background-color: var(--l-bg);
+  color: var(--l-link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#light a:hover {
+  color: var(--l-link-color-hover);
+}
+
+#light header {
+  border-bottom: var(--l-border-bottom);
+}
+
+#light form {
+  background-color: #f5f6f8;
+  box-shadow: 4px 4px 12px #c1c3c5;
+}
+
+#light form button {
+  background-color: #1AAE9F;
+}
+
+#light form button:hover {
+  background-color: #1dc4b3;
+}
+
+/* ============== Dark Mode ================ */
+
+#dark {
+  background-color: var(--d-bg);
+  color: var(--d-color);
+}
+
+#dark a {
+  background-color: var(--d-bg);
+  color: var(--d-link-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#dark a:hover {
+  color: var(--d-link-color-hover);
+}
+
+#dark header {
+  border-bottom: var(--d-border-bottom);
+}
+
+#dark form {
+  background-color: #212529;
+  box-shadow: 4px 4px 12px #2e343a;
+}
+
+#dark form input {
+  border: 0;
+  background: var(--d-bg-input);
+  color: #f4ede8;
+}
+
+#dark form input:-webkit-autofill {
+  box-shadow: 0 0 0 30px #5f5b5b inset;
+  -webkit-box-shadow: 0 0 0 30px #6b6666 inset;
+}
+
+#dark form input:-webkit-autofill {
+  -webkit-text-fill-color: #f4ede8 !important;
+}
+
+#dark form input::placeholder {
+  color: #666360;
+}
+
+#dark form button {
+  background-color: #1AAE9F;
+}
+
+#dark form button:hover {
+  background-color: #1dc4b3;
+}
