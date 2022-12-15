@@ -18,7 +18,7 @@ function SignIn() {
           <input type="text" name="password" placeholder="Senha" />
         </label>
 
-        <button type="submit" >Cadastrar</button>
+        <button type="submit" >Entrar</button>
       </form>
     </main>
   );
