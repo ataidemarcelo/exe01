@@ -15,7 +15,7 @@ function SignIn() {
 
         <label>
           Senha:
-          <input type="text" name="password" placeholder="Senha" />
+          <input type="password" name="password" placeholder="Senha" />
         </label>
 
         <button type="submit" >Entrar</button>

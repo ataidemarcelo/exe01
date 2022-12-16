@@ -19,12 +19,12 @@ function SignUp() {
 
         <label>
           Senha:
-          <input type="text" name="password" placeholder="Senha" />
+          <input type="password" name="password" placeholder="Senha" />
         </label>
 
         <label>
           Confirmação da senha:
-          <input type="text" name="passwordCconfirmation" placeholder="Confirme sua senha" />
+          <input type="password" name="passwordCconfirmation" placeholder="Confirme sua senha" />
         </label>
 
         <button type="submit" >Cadastrar</button>
