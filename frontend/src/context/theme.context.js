@@ -19,8 +19,6 @@ const ThemeProvider = ({ children }) => {
     // Ver como usar de forma assincrona o setTheme 
     const newTheme = theme === 'light' ? 'dark' : 'light';
     localStorage.setItem('@BlogAPI:theme:', newTheme)
-
-    console.log(theme);
   };
 
   return (
