@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import styles from  './signup.module.css';
@@ -7,6 +7,7 @@ import styles from  './signup.module.css';
 function SignUp() {
   const [dataForm, setDataForm] = useState({ name: '', email: '', password: '', passwordConfirmation: '' });
   const [error, setError] = useState('');
+  let history = useHistory();
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
@@ -66,9 +67,11 @@ function SignUp() {
         return;
       }
   
-      const result = await response.json();
-      return result;
+      const user = await response.json();
 
+      // Salvar na aplicação
+      localStorage.setItem('@BlogApi:user:', JSON.stringify(user));
+      history.push('/dashboard');
     } catch (err) {
       setError('Falha na conexão, aguarde uns minutos e tente novamente');
       console.error(err);
