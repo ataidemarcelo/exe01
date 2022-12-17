@@ -9,13 +9,13 @@ function SignUp() {
   const [error, setError] = useState('');
   let history = useHistory();
 
-  const handleChange = async (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    const copyFormData = { ...dataForm };
+    const copyDataForm = { ...dataForm };
     
-    copyFormData[name] = value;
+    copyDataForm[name] = value;
 
-    setDataForm(copyFormData);
+    setDataForm(copyDataForm);
   }
 
   const handleSubmit = async (event) => {
@@ -70,7 +70,7 @@ function SignUp() {
       const user = await response.json();
 
       // Salvar na aplicação
-      localStorage.setItem('@BlogApi:user:', JSON.stringify(user));
+      localStorage.setItem('@BlogAPI:user:', JSON.stringify(user));
       history.push('/dashboard');
     } catch (err) {
       setError('Falha na conexão, aguarde uns minutos e tente novamente');
