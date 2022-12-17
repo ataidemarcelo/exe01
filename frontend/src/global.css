@@ -61,6 +61,11 @@ body, input {
   box-shadow: 4px 4px 12px #c1c3c5;
 }
 
+#light form input:-webkit-autofill {
+  box-shadow: 0 0 0 30px white inset;
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
 #light form button {
   background-color: #1AAE9F;
 }
@@ -69,6 +74,9 @@ body, input {
   background-color: #1dc4b3;
 }
 
+#light form button:disabled {
+  background-color: #24e4d1;
+}
 /* ============== Dark Mode ================ */
 
 #dark {
@@ -121,4 +129,10 @@ body, input {
 
 #dark form button:hover {
   background-color: #1dc4b3;
+}
+
+#dark form button:disabled {
+  background-color: #cdd6d5;
+  cursor: not-allowed;
+  color: #afb1b3;
 }

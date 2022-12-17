@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ThemeContext } from '../../App';
+import { useTheme } from '../../context/theme.context';
 import { FiMenu } from 'react-icons/fi';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 import styles from './main.header.module.css';
 
 function MainHeader() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className={styles.header}>
@@ -31,8 +31,6 @@ function MainHeader() {
             {theme === 'dark' ? <MdLightMode size={16} color='yellow' /> : <MdDarkMode size={16}/> }
           </div>
         </div>
-
-
       </div>
       
     </header>

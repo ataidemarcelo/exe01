@@ -46,6 +46,7 @@
   padding: 12px 0;
 }
 
-.form button:hover {
-  background-color: #31b857;
+.errors {
+  color: rgb(177, 24, 24);
+  padding: 16px;
 }
