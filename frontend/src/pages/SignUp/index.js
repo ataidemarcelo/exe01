@@ -33,16 +33,46 @@ function SignUp() {
           .email('Digite um email válido')
           .required('O campo email é obrigatório.'),
         name: Yup.string()
+          .min(8, 'O campo nome precisa ter no mínimo 8 caracters')
           .required('O campo nome é obrigatório.'),
       });
 
       await schema.validate(dataForm);
       setError('');
+      await createNewUser(dataForm);
     } catch (err) {
       const { errors } = err;
       setError(errors[0]);
     }
-    
+  };
+
+  const createNewUser = async ({ name, email, password, passwordConfirmation }) => {
+    try {
+      const response = await fetch('http://localhost:3001/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          displayName: name,
+          email,
+          password,
+          passwordConfirmation,
+        }),
+      });
+  
+      if (response.status === 409) {
+        setError('Usuário já existe na aplicação');
+        return;
+      }
+  
+      const result = await response.json();
+      return result;
+
+    } catch (err) {
+      setError('Falha na conexão, aguarde uns minutos e tente novamente');
+      console.error(err);
+    }
   };
 
   return (
@@ -93,7 +123,11 @@ function SignUp() {
           />
         </label>
 
-        <button type="submit" >Cadastrar</button>
+        <button 
+          type="submit"
+        >
+          Cadastrar
+        </button>
       </form>
       <span className={styles.errors}>
         {error && error}

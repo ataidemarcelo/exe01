@@ -5,7 +5,7 @@
 <details>
   <summary><strong>Cenários de Exceção:</strong></summary>
 
-1. `404 - NOT_FOUND` -> se a API não existir ✅
+1. `404 - NOT_FOUND` -> se a rota na API não existir ✅
 2. `400 - BAD_REQUEST` -> se não tem os campos obrigatórios ✅
 3. `400 - BAD_REQUEST` -> se os campos não são string ✅
 4. `400 - BAD_REQUEST` -> se displayName não tem pelo menos 8 caracters ✅
