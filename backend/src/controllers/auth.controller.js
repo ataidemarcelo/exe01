@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
   const token = await authService.authenticateUser({ email, password });
   
   // enviar o token como resposta
-  res.status(200).json(token);
+  res.status(200).json({ token });
 }
 
 module.exports = {

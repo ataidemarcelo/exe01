@@ -27,7 +27,14 @@ const authenticateUser = async (validData) => {
   }
   
   // criar um token JWT
-  const token = 'token!!!';
+  const payload = { 
+    userId: user.dataValues.id,
+    name: user.dataValues.displayName,
+    role: user.dataValues.role,
+    avatar: user.dataValues.image,
+  };
+
+  const token = createToken(payload);
 
   return token;
 };
