@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     passwordHash: DataTypes.STRING,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    role: DataTypes.STRING,
   }, {
     underscored: true,
     timestamps: true,
