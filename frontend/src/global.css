@@ -26,6 +26,14 @@ body, input {
   font-family: 'Roboto', sans-serif;
 }
 
+input {
+  font-size: 12px;
+}
+
+form input::placeholder {
+  color: #9c9ea0;
+}
+
 .wrapper {
   align-items: center;
   display: flex;
@@ -117,10 +125,6 @@ body, input {
 
 #dark form input:-webkit-autofill {
   -webkit-text-fill-color: #f4ede8 !important;
-}
-
-#dark form input::placeholder {
-  color: #666360;
 }
 
 #dark form button {

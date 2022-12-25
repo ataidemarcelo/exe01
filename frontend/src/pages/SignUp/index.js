@@ -88,7 +88,7 @@ function SignUp() {
             type="text" 
             name="name"
             value={ dataForm.name }
-            placeholder="Nome"
+            placeholder="Nome Completo"
             onChange={ handleChange }
           />
         </label>
@@ -99,7 +99,7 @@ function SignUp() {
             type="text" 
             name="email"
             value={ dataForm.email }
-            placeholder="Email"
+            placeholder="seu melhor Email"
             onChange={ handleChange }
           />
         </label>
@@ -110,7 +110,7 @@ function SignUp() {
             type="password" 
             name="password"
             value={ dataForm.password }
-            placeholder="Senha"
+            placeholder="Senha (minímo 8 caracteres)"
             onChange={handleChange }
           />
         </label>
@@ -121,7 +121,7 @@ function SignUp() {
             type="password" 
             name="passwordConfirmation" 
             value={ dataForm.passwordConfirmation }
-            placeholder="Confirme sua senha" 
+            placeholder="Repita a senha digitada acima" 
             onChange={handleChange }
           />
         </label>
