@@ -13,9 +13,6 @@ const login = async (req, res, next) => {
 
   const { email, password } = value;
 
-  // checar se email exite
-  // checar se senha enviada confere com a do DB
-  // criar um token JWT
   const token = await authService.authenticateUser({ email, password });
   
   // enviar o token como resposta
