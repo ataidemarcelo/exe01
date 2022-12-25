@@ -1,10 +1,17 @@
 const { authService } = require('../services');
+const { loginFieldsSchema } = require('./validations/schema.login');
 
-const login = async (req, res) => {
-  // pegar os dados da requisição
-  const { email, password } = req.body;
+const login = async (req, res, next) => {
+  // pegar os dados da requisição e validar
+  const { error, value } = loginFieldsSchema.validate(req.body);
 
-  // validar os dados recebidos
+  if (error) {
+    error.statusCode = 400;
+
+    return next(error);
+  }
+
+  const { email, password } = value;
 
   // checar se email exite
   // checar se senha enviada confere com a do DB
