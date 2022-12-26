@@ -34,13 +34,13 @@ function SignIn() {
 
       await schema.validate({ email, password });
 
+      setIsLoading(true);
       const signIn = () => { 
-        setIsLoading(true);
         // Fazer a chamada para API
         console.log({ email, password })
+        setIsLoading(false);
       };
       setTimeout(signIn, 2000);
-      setIsLoading(false);
       return;
     } catch (err) {
       const { errors } = err;
@@ -49,7 +49,7 @@ function SignIn() {
     }
   }
 
-  if (!isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <main className={styles.main}>
