@@ -73,7 +73,7 @@ function SignUp() {
 
       // Salvar na aplicação
       localStorage.setItem('@BlogAPI:user:', JSON.stringify(user));
-      history.push('/dashboard');
+      history.push('/signin');
     } catch (err) {
       setError('Falha na conexão, aguarde uns minutos e tente novamente');
       console.error(err);

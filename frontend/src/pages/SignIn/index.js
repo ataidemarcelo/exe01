@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 
+import Loading from '../../components/Loading';
+
 import styles from  './signin.module.css';
 
 function SignIn() {
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -31,14 +34,22 @@ function SignIn() {
 
       await schema.validate({ email, password });
 
-      // Fazer a chamada para API
-      console.log({ email, password });
+      const signIn = () => { 
+        setIsLoading(true);
+        // Fazer a chamada para API
+        console.log({ email, password })
+      };
+      setTimeout(signIn, 2000);
+      setIsLoading(false);
+      return;
     } catch (err) {
       const { errors } = err;
       setError(errors[0]);
       return;
     }
   }
+
+  if (!isLoading) return <Loading />;
 
   return (
     <main className={styles.main}>
