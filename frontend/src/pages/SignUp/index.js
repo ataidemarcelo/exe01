@@ -16,6 +16,7 @@ function SignUp() {
     copyDataForm[name] = value;
 
     setDataForm(copyDataForm);
+    setError('');
   }
 
   const handleSubmit = async (event) => {
@@ -44,6 +45,7 @@ function SignUp() {
     } catch (err) {
       const { errors } = err;
       setError(errors[0]);
+      return;
     }
   };
 
