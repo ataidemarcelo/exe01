@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import * as Yup from 'yup';
 
+import { schemaSignIn } from '../../validations/schemas';
 import Loading from '../../components/Loading';
 
 import styles from  './signin.module.css';
@@ -23,16 +23,7 @@ function SignIn() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const schema = Yup.object().shape({
-        password: Yup.string()
-          .required('O campo password é obrigatório.')
-          .min(6, 'A senha precisa ter no mínimo 6 caracters'),
-        email: Yup.string()
-          .email('Digite um email válido')
-          .required('O campo email é obrigatório.')
-      });
-
-      await schema.validate({ email, password });
+      await schemaSignIn.validate({ email, password });
 
       setIsLoading(true);
       const signIn = () => { 
@@ -41,6 +32,7 @@ function SignIn() {
         setIsLoading(false);
       };
       setTimeout(signIn, 2000);
+
       return;
     } catch (err) {
       const { errors } = err;

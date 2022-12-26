@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as Yup from 'yup';
 
+import { schemaSignUp } from '../../validations/schemas';
 import styles from  './signup.module.css';
 
 function SignUp() {
@@ -21,27 +21,13 @@ function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const { name, email, password, passwordConfirmation } = dataForm;
 
     try {
-      const schema = Yup.object().shape({
-        passwordConfirmation: Yup.string().oneOf(
-          [Yup.ref('password'), undefined],
-          'Senha e confirmação de senha precisam ser iguais',
-        ),
-        password: Yup.string()
-          .min(6, 'A senha precisa ter no mínimo 6 caracters')
-          .required('O campo password é obrigatório.'),
-        email: Yup.string()
-          .email('Digite um email válido')
-          .required('O campo email é obrigatório.'),
-        name: Yup.string()
-          .min(8, 'O campo nome precisa ter no mínimo 8 caracters')
-          .required('O campo nome é obrigatório.'),
-      });
+      await schemaSignUp.validate({ name, email, password, passwordConfirmation });
 
-      await schema.validate(dataForm);
       setError('');
-      await createNewUser(dataForm);
+      await createNewUser({ name, email, password, passwordConfirmation });
     } catch (err) {
       const { errors } = err;
       setError(errors[0]);
