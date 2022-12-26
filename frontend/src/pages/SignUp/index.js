@@ -16,6 +16,7 @@ function SignUp() {
     copyDataForm[name] = value;
 
     setDataForm(copyDataForm);
+    setError('');
   }
 
   const handleSubmit = async (event) => {
@@ -44,6 +45,7 @@ function SignUp() {
     } catch (err) {
       const { errors } = err;
       setError(errors[0]);
+      return;
     }
   };
 
@@ -71,7 +73,7 @@ function SignUp() {
 
       // Salvar na aplicação
       localStorage.setItem('@BlogAPI:user:', JSON.stringify(user));
-      history.push('/dashboard');
+      history.push('/signin');
     } catch (err) {
       setError('Falha na conexão, aguarde uns minutos e tente novamente');
       console.error(err);
@@ -88,7 +90,7 @@ function SignUp() {
             type="text" 
             name="name"
             value={ dataForm.name }
-            placeholder="Nome"
+            placeholder="Nome Completo"
             onChange={ handleChange }
           />
         </label>
@@ -99,7 +101,7 @@ function SignUp() {
             type="text" 
             name="email"
             value={ dataForm.email }
-            placeholder="Email"
+            placeholder="seu melhor Email"
             onChange={ handleChange }
           />
         </label>
@@ -110,7 +112,7 @@ function SignUp() {
             type="password" 
             name="password"
             value={ dataForm.password }
-            placeholder="Senha"
+            placeholder="Senha (minímo 8 caracteres)"
             onChange={handleChange }
           />
         </label>
@@ -121,7 +123,7 @@ function SignUp() {
             type="password" 
             name="passwordConfirmation" 
             value={ dataForm.passwordConfirmation }
-            placeholder="Confirme sua senha" 
+            placeholder="Repita a senha digitada acima" 
             onChange={handleChange }
           />
         </label>
