@@ -40,8 +40,12 @@ function SignIn() {
           })
         });
 
-        await response.json();
-        
+        const result = await response.json();
+        // Em caso de Erro
+        if (!response.ok) {
+          setError(result.message);
+        }
+
         setIsLoading(false);
       };
 
