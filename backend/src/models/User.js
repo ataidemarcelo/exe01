@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     passwordHash: DataTypes.STRING,
     image: DataTypes.STRING,
-    role: DataTypes.STRING,
+    role: { type: DataTypes.STRING, defaultValue: 'user' },
   }, {
     underscored: true,
     timestamps: true,
