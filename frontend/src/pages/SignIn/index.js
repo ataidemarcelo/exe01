@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { schemaSignIn } from '../../validations/schemas';
 import Loading from '../../components/Loading';
@@ -6,6 +7,7 @@ import Loading from '../../components/Loading';
 import styles from  './signin.module.css';
 
 function SignIn() {
+  const history = useHistory();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -51,6 +53,7 @@ function SignIn() {
         const { token } = result;
 
         localStorage.setItem('@BlogAPI:token:', token);
+        history.push('/posts');
 
         setIsLoading(false);
       };
