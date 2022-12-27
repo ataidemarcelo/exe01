@@ -26,11 +26,25 @@ function SignIn() {
       await schemaSignIn.validate({ email, password });
 
       setIsLoading(true);
-      const signIn = () => { 
+
+      const signIn = async () => { 
         // Fazer a chamada para API
-        console.log({ email, password })
+        const response = await fetch('http://localhost:3001/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'Application/json'
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          })
+        });
+
+        await response.json();
+        
         setIsLoading(false);
       };
+
       setTimeout(signIn, 2000);
 
       return;
