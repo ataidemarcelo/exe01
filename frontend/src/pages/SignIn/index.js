@@ -44,7 +44,13 @@ function SignIn() {
         // Em caso de Erro
         if (!response.ok) {
           setError(result.message);
+          setIsLoading(false);
+          return;
         }
+
+        const { token } = result;
+
+        localStorage.setItem('@BlogAPI:token:', token);
 
         setIsLoading(false);
       };
