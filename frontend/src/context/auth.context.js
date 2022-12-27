@@ -38,8 +38,23 @@ const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const getUser = async (token) => {
+    const response = await fetch('http://localhost:3001/users/me', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/json',
+        Authorization: token
+      },
+    });
+
+    console.log(response);
+    const result = await response.json();
+
+    return result;
+  }
+
   return (
-    <AuthContext.Provider value={{ isLoading, signIn }}>
+    <AuthContext.Provider value={{ isLoading, signIn, getUser }}>
       {children}
     </AuthContext.Provider>
   );
