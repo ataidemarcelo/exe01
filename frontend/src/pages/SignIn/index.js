@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { schemaSignIn } from '../../validations/schemas';
 import Loading from '../../components/Loading';
+
 import { useError } from '../../context/error.context';
+import { useAuth } from '../../context/auth.context';
 
 import styles from  './signin.module.css';
 
 function SignIn() {
-  const history = useHistory();
-  const { errorMessage, setErrorMessage } = useError();
-  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { errorMessage, setErrorMessage } = useError();
+  const { signIn, isLoading } = useAuth();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('@BlogAPI:user:'));
@@ -36,38 +37,7 @@ function SignIn() {
     try {
       await schemaSignIn.validate({ email, password });
 
-      setIsLoading(true);
-
-      const signIn = async () => { 
-        // Fazer a chamada para API
-        const response = await fetch('http://localhost:3001/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'Application/json'
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          })
-        });
-
-        const result = await response.json();
-        // Em caso de Erro
-        if (!response.ok) {
-          setErrorMessage(result.message);
-          setIsLoading(false);
-          return;
-        }
-
-        const { token } = result;
-
-        localStorage.setItem('@BlogAPI:token:', token);
-        history.push('/posts');
-
-        setIsLoading(false);
-      };
-
-      setTimeout(signIn, 2000);
+      await signIn({ email, password });
 
       return;
     } catch (err) {
