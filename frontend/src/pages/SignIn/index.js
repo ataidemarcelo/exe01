@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom';
 
 import { schemaSignIn } from '../../validations/schemas';
 import Loading from '../../components/Loading';
+import { useError } from '../../context/error.context';
 
 import styles from  './signin.module.css';
 
 function SignIn() {
   const history = useHistory();
-  const [error, setError] = useState('');
+  const { errorMessage, setErrorMessage } = useError();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +20,7 @@ function SignIn() {
     if (name === 'email') setEmail(value);
     if(name === 'password') setPassword(value);
 
-    setError('');
+    setErrorMessage('');
   }
 
   async function handleSubmit(event) {
@@ -45,7 +46,7 @@ function SignIn() {
         const result = await response.json();
         // Em caso de Erro
         if (!response.ok) {
-          setError(result.message);
+          setErrorMessage(result.message);
           setIsLoading(false);
           return;
         }
@@ -63,7 +64,7 @@ function SignIn() {
       return;
     } catch (err) {
       const { errors } = err;
-      setError(errors[0]);
+      setErrorMessage(errors[0]);
       return;
     }
   }
@@ -100,7 +101,7 @@ function SignIn() {
         <button type="submit" >Entrar</button>
       </form>
       <span className={styles.errors}>
-        {error && error}
+        {errorMessage && errorMessage}
       </span>
     </main>
   );

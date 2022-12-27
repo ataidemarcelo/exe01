@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { schemaSignUp } from '../../validations/schemas';
+import { useError } from '../../context/error.context';
+
 import styles from  './signup.module.css';
 
 function SignUp() {
   const [dataForm, setDataForm] = useState({ name: '', email: '', password: '', passwordConfirmation: '' });
-  const [error, setError] = useState('');
+  const { errorMessage, setErrorMessage } = useError();
   let history = useHistory();
 
   const handleChange = (event) => {
@@ -16,7 +18,7 @@ function SignUp() {
     copyDataForm[name] = value;
 
     setDataForm(copyDataForm);
-    setError('');
+    setErrorMessage('');
   }
 
   const handleSubmit = async (event) => {
@@ -26,11 +28,11 @@ function SignUp() {
     try {
       await schemaSignUp.validate({ name, email, password, passwordConfirmation });
 
-      setError('');
+      setErrorMessage('');
       await createNewUser({ name, email, password, passwordConfirmation });
     } catch (err) {
       const { errors } = err;
-      setError(errors[0]);
+      setErrorMessage(errors[0]);
       return;
     }
   };
@@ -51,7 +53,7 @@ function SignUp() {
       });
   
       if (response.status === 409) {
-        setError('Usuário já existe na aplicação');
+        setErrorMessage('Usuário já existe na aplicação');
         return;
       }
   
@@ -61,7 +63,7 @@ function SignUp() {
       localStorage.setItem('@BlogAPI:user:', JSON.stringify(user));
       history.push('/signin');
     } catch (err) {
-      setError('Falha na conexão, aguarde uns minutos e tente novamente');
+      setErrorMessage('Falha na conexão, aguarde uns minutos e tente novamente');
       console.error(err);
     }
   };
@@ -121,7 +123,7 @@ function SignUp() {
         </button>
       </form>
       <span className={styles.errors}>
-        {error && error}
+        {errorMessage && errorMessage}
       </span>
     </main>
   );
