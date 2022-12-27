@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { schemaSignUp } from '../../validations/schemas';
@@ -10,6 +10,10 @@ function SignUp() {
   const [dataForm, setDataForm] = useState({ name: '', email: '', password: '', passwordConfirmation: '' });
   const { errorMessage, setErrorMessage } = useError();
   let history = useHistory();
+
+  useEffect(() => {
+    return setErrorMessage('');
+  }, [setErrorMessage]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

@@ -21,7 +21,8 @@ function SignIn() {
     if (user) {
       setEmail(user.email);
     }
-  }, []);
+    return setErrorMessage('');
+  }, [setErrorMessage]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -42,7 +43,10 @@ function SignIn() {
       return;
     } catch (err) {
       const { errors } = err;
-      setErrorMessage(errors[0]);
+      if (errors) {
+        setErrorMessage(errors[0]);
+      }
+      setErrorMessage(err.message);
       return;
     }
   }

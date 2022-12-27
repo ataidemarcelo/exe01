@@ -1,14 +1,11 @@
 import React, { createContext, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useError } from '../context/error.context';
-
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const history = useHistory();
 
-  const { setErrorMessage } = useError();
   const [isLoading, setIsLoading] = useState(false);
 
   const signIn = async ({ email, password }) => {
@@ -27,10 +24,10 @@ const AuthProvider = ({ children }) => {
 
     const result = await response.json();
     // Em caso de Erro
-    if (!response.ok) {
-      setErrorMessage(result.message);
+    if (response.status === 400) {
+      const newError = new Error('Campo inválido!!!');
       setIsLoading(false);
-      return;
+      throw newError;
     }
 
     const { token } = result;
