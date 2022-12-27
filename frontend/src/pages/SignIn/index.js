@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { schemaSignIn } from '../../validations/schemas';
@@ -13,6 +13,14 @@ function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('@BlogAPI:user:'));
+
+    if (user) {
+      setEmail(user.email);
+    }
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
