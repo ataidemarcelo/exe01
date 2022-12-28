@@ -37,7 +37,7 @@ const authenticateUser = async (validData) => {
 
   const token = createToken(payload);
 
-  return token;
+  return { payload, token };
 };
 
 module.exports = {

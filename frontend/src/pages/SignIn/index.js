@@ -16,12 +16,12 @@ function SignIn() {
   const { signIn, isLoading } = useAuth();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('@BlogAPI:user:'));
+    const userEmail = JSON.parse(localStorage.getItem('@BlogAPI:email:'));
 
-    if (user) {
-      setEmail(user.email);
+    if (userEmail) {
+      setEmail(userEmail);
     }
-    return setErrorMessage('');
+    setErrorMessage('');
   }, [setErrorMessage]);
 
   function handleChange(event) {

@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { ThemeProvider } from './context/theme.context';
 import { ErrorProvider } from './context/error.context';
-import { AuthProvider } from './context/auth.context';
+import { AuthProvider, PrivateRoute } from './context/auth.context';
 
 import MainHeader from './components/MainHeader';
 import HomePage from './pages/Home';
@@ -25,7 +25,9 @@ function App() {
             <Route path="/signin" component={ SignIn } />
             <Route path="/signup" component={ SignUp } />
 
-            <Route path="/posts" component={ Posts } />
+            <PrivateRoute path="/posts">
+              <Posts />
+            </PrivateRoute>
           </Switch>
         </AuthProvider>
       </ErrorProvider>

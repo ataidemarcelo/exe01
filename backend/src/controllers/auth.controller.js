@@ -13,10 +13,10 @@ const login = async (req, res, next) => {
 
   const { email, password } = value;
 
-  const token = await authService.authenticateUser({ email, password });
+  const { token, payload: user } = await authService.authenticateUser({ email, password });
   
   // enviar o token como resposta
-  res.status(200).json({ token });
+  res.status(200).json({ token, user });
 }
 
 module.exports = {

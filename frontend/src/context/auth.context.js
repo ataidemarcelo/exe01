@@ -1,15 +1,24 @@
 import React, { createContext, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Route, Redirect, useHistory } from 'react-router-dom';
 import { useError } from './error.context';
 
-const AuthContext = createContext(null);
-
+const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const history = useHistory();
   const { setErrorMessage } = useError();
 
+  const [user, setUser] = useState(() => {
+    const userData = localStorage.getItem('@BlogAPI:user:');
+  
+    if (userData) {
+      return userData;
+    }
+
+    return null;
+  });
   const [isLoading, setIsLoading] = useState(false);
+  const isAuthenticated = !!user;
 
   const signIn = async ({ email, password }) => {
     setIsLoading(true);
@@ -33,9 +42,11 @@ const AuthProvider = ({ children }) => {
       throw newError;
     }
 
-    const { token } = result;
+    const { token, user: userData } = result;
 
     localStorage.setItem('@BlogAPI:token:', token);
+    localStorage.setItem('@BlogAPI:user:', JSON.stringify(userData));
+    setUser(userData);
     history.push('/posts');
 
     setIsLoading(false);
@@ -57,18 +68,18 @@ const AuthProvider = ({ children }) => {
         throw newError;
       }
   
-      const result = await response.json();
-      console.log(result);
+      const userData = await response.json();
   
-      return result;
+      return userData;
     } catch (err) {
+      // console.log(err);
       setErrorMessage(err.message);
       return;
     }
   }
 
   return (
-    <AuthContext.Provider value={{ isLoading, signIn, getUser }}>
+    <AuthContext.Provider value={{ isLoading, signIn, getUser, isAuthenticated, user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
@@ -84,4 +95,25 @@ const useAuth = () => {
   return context;
 };
 
-export { AuthProvider, useAuth };
+function PrivateRoute({ children, ...rest }) {
+  let { isAuthenticated } = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+      isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/signin",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+export { AuthProvider, useAuth, PrivateRoute };
