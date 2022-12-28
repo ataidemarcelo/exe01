@@ -57,6 +57,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem('@BlogAPI:token:');
     localStorage.removeItem('@BlogAPI:user:');
+    localStorage.removeItem('@BlogAPI:email:');
     history.push('/');
   };
 
