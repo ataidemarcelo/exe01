@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as Yup from 'yup';
+
+import { schemaSignUp } from '../../validations/schemas';
+import { useError } from '../../context/error.context';
 
 import styles from  './signup.module.css';
 
 function SignUp() {
   const [dataForm, setDataForm] = useState({ name: '', email: '', password: '', passwordConfirmation: '' });
-  const [error, setError] = useState('');
+  const { errorMessage, setErrorMessage } = useError();
   let history = useHistory();
+
+  useEffect(() => {
+    return setErrorMessage('');
+  }, [setErrorMessage]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -16,35 +22,21 @@ function SignUp() {
     copyDataForm[name] = value;
 
     setDataForm(copyDataForm);
-    setError('');
+    setErrorMessage('');
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const { name, email, password, passwordConfirmation } = dataForm;
 
     try {
-      const schema = Yup.object().shape({
-        passwordConfirmation: Yup.string().oneOf(
-          [Yup.ref('password'), undefined],
-          'Senha e confirmação de senha precisam ser iguais',
-        ),
-        password: Yup.string()
-          .min(6, 'A senha precisa ter no mínimo 6 caracters')
-          .required('O campo password é obrigatório.'),
-        email: Yup.string()
-          .email('Digite um email válido')
-          .required('O campo email é obrigatório.'),
-        name: Yup.string()
-          .min(8, 'O campo nome precisa ter no mínimo 8 caracters')
-          .required('O campo nome é obrigatório.'),
-      });
+      await schemaSignUp.validate({ name, email, password, passwordConfirmation });
 
-      await schema.validate(dataForm);
-      setError('');
-      await createNewUser(dataForm);
+      setErrorMessage('');
+      await createNewUser({ name, email, password, passwordConfirmation });
     } catch (err) {
       const { errors } = err;
-      setError(errors[0]);
+      setErrorMessage(errors[0]);
       return;
     }
   };
@@ -65,18 +57,18 @@ function SignUp() {
       });
   
       if (response.status === 409) {
-        setError('Usuário já existe na aplicação');
+        setErrorMessage('Usuário já existe na aplicação');
         return;
       }
   
       const user = await response.json();
 
       // Salvar na aplicação
-      localStorage.setItem('@BlogAPI:user:', JSON.stringify(user));
+      localStorage.setItem('@BlogAPI:email:', user.email);
       history.push('/signin');
     } catch (err) {
-      setError('Falha na conexão, aguarde uns minutos e tente novamente');
-      console.error(err);
+      setErrorMessage('Falha na conexão, aguarde uns minutos e tente novamente');
+      console.log(err);
     }
   };
 
@@ -135,7 +127,7 @@ function SignUp() {
         </button>
       </form>
       <span className={styles.errors}>
-        {error && error}
+        {errorMessage && errorMessage}
       </span>
     </main>
   );

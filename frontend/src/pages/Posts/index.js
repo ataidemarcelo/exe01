@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
 
-import Sidebar from '../../components/Sidebar';
-import Content from '../../components/Content';
-
 import { useAuth } from '../../context/auth.context';
 
-import styles from  './dashboard.module.css';
-
-function Dashboard() { 
+function Posts() {
   const { getUser, setUser } = useAuth();
   const token = localStorage.getItem('@BlogAPI:token:');
 
@@ -26,14 +21,11 @@ function Dashboard() {
 
     fetchData();
 
-  }, [getUser, token, setUser]);
+  }, [getUser, token, setUser])
 
   return (
-    <main className={styles.main}>
-      <Sidebar />
-      <Content />
-    </main>
+    <h1>Posts</h1>
   );
-};
+}
 
-export default Dashboard;
+export default Posts;

@@ -30,13 +30,14 @@ const authenticateUser = async (validData) => {
   const payload = { 
     userId: user.dataValues.id,
     name: user.dataValues.displayName,
+    email: user.dataValues.email,
     role: user.dataValues.role,
     avatar: user.dataValues.image,
   };
 
   const token = createToken(payload);
 
-  return token;
+  return { payload, token };
 };
 
 module.exports = {

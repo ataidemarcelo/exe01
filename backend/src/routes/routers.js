@@ -9,7 +9,6 @@ const routers = express.Router();
 routers.use('/users', userRouter);
 routers.use('/login', authRouter);
 
-
-routers.get('/dashboard', authMiddleware, (req, res) => res.status(200).json({ title: 'Dashboard!!!' }));
+routers.get('/dashboard', authMiddleware, (_req, res) => res.status(200).json({ title: 'Dashboard!!!' }));
 
 module.exports = routers;
