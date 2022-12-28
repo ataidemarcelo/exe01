@@ -68,7 +68,7 @@ function SignUp() {
       history.push('/signin');
     } catch (err) {
       setErrorMessage('Falha na conexão, aguarde uns minutos e tente novamente');
-      console.error(err);
+      console.log(err);
     }
   };
 

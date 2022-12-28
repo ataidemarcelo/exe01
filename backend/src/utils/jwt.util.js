@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET || 'deveriaExistirUma_SECRET_KEY';
 
 const jwtConfig = {
-  expiresIn: 300,
+  expiresIn: 10,
   algorithm: 'HS256',
 };
 

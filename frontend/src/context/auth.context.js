@@ -1,10 +1,13 @@
 import React, { createContext, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useError } from './error.context';
 
 const AuthContext = createContext(null);
 
+
 const AuthProvider = ({ children }) => {
   const history = useHistory();
+  const { setErrorMessage } = useError();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,18 +42,29 @@ const AuthProvider = ({ children }) => {
   };
 
   const getUser = async (token) => {
-    const response = await fetch('http://localhost:3001/users/me', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/json',
-        Authorization: token
-      },
-    });
-
-    console.log(response);
-    const result = await response.json();
-
-    return result;
+    try {
+      const response = await fetch('http://localhost:3001/users/me', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'Application/json',
+          Authorization: token
+        },
+      });
+  
+      if (!response.ok) {
+        const newError = new Error('Token inválido!');
+        history.push('/signin');
+        throw newError;
+      }
+  
+      const result = await response.json();
+      console.log(result);
+  
+      return result;
+    } catch (err) {
+      setErrorMessage(err.message);
+      return;
+    }
   }
 
   return (

@@ -4,17 +4,18 @@ import { useAuth } from '../../context/auth.context';
 
 function Posts() {
   const { getUser } = useAuth();
+  const token = localStorage.getItem('@BlogAPI:token:');
 
   useEffect(() => {
     const fetchData = async () => {
-      const user = await getUser();
+      const dataUser = await getUser(token);
 
-      console.log(user);
+      console.log(dataUser);
     };
 
     fetchData();
 
-  }, [getUser])
+  }, [getUser, token])
 
   return (
     <h1>Posts</h1>
