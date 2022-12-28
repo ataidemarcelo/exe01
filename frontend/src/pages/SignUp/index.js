@@ -64,7 +64,7 @@ function SignUp() {
       const user = await response.json();
 
       // Salvar na aplicação
-      localStorage.setItem('@BlogAPI:email:', JSON.stringify(user.email));
+      localStorage.setItem('@BlogAPI:email:', user.email);
       history.push('/signin');
     } catch (err) {
       setErrorMessage('Falha na conexão, aguarde uns minutos e tente novamente');
