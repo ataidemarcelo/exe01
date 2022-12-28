@@ -11,7 +11,7 @@ import styles from './main.header.module.css';
 
 function MainHeader() {
   const { theme, toggleTheme } = useTheme();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, signOut } = useAuth();
 
   return (
     <header className={styles.header}>
@@ -40,6 +40,7 @@ function MainHeader() {
                 }}>
                   { user.email } 
                   <button
+                    onClick={ signOut }
                     title="Logout"
                     style={{
                       backgroundColor: 'black',

@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const { setErrorMessage } = useError();
 
   const [user, setUser] = useState(() => {
-    const userData = localStorage.getItem('@BlogAPI:user:');
+    const userData = JSON.parse(localStorage.getItem('@BlogAPI:user:'));
   
     if (userData) {
       return userData;
@@ -45,11 +45,19 @@ const AuthProvider = ({ children }) => {
     const { token, user: userData } = result;
 
     localStorage.setItem('@BlogAPI:token:', token);
+    localStorage.setItem('@BlogAPI:email:', userData.email);
     localStorage.setItem('@BlogAPI:user:', JSON.stringify(userData));
     setUser(userData);
     history.push('/posts');
 
     setIsLoading(false);
+  };
+
+  const signOut = () => {
+    setUser(null);
+    localStorage.removeItem('@BlogAPI:token:');
+    localStorage.removeItem('@BlogAPI:user:');
+    history.push('/');
   };
 
   const getUser = async (token) => {
@@ -63,7 +71,7 @@ const AuthProvider = ({ children }) => {
       });
   
       if (!response.ok) {
-        const newError = new Error('Token inválido!');
+        const newError = new Error('Token expirou, faça Login novamente!');
         history.push('/signin');
         throw newError;
       }
@@ -79,7 +87,7 @@ const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isLoading, signIn, getUser, isAuthenticated, user, setUser }}>
+    <AuthContext.Provider value={{ isLoading, signIn, signOut, getUser, isAuthenticated, user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

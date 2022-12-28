@@ -18,7 +18,9 @@ function App() {
     <ThemeProvider>
       <ErrorProvider>
         <AuthProvider>
+          
           <MainHeader />
+
           <Switch>
             <Route path="/" exact component={ HomePage } />
             <Route path="/dashboard" component={ Dashboard } />
@@ -29,6 +31,7 @@ function App() {
               <Posts />
             </PrivateRoute>
           </Switch>
+
         </AuthProvider>
       </ErrorProvider>
     </ThemeProvider>

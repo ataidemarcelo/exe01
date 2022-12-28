@@ -16,7 +16,7 @@ function SignIn() {
   const { signIn, isLoading } = useAuth();
 
   useEffect(() => {
-    const userEmail = JSON.parse(localStorage.getItem('@BlogAPI:email:'));
+    const userEmail = localStorage.getItem('@BlogAPI:email:');
 
     if (userEmail) {
       setEmail(userEmail);
