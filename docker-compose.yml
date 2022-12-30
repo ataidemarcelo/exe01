@@ -3,7 +3,7 @@ services:
 
   front:
     container_name: front
-    build: ./frontend
+    build: ./dockerfiles/frontend
     ports:
       - 3000:3000
     depends_on:
@@ -20,7 +20,7 @@ services:
 
   back:
     container_name: back
-    build: ./backend
+    build: ./dockerfiles/backend
     ports:
       - 3001:3001
     depends_on:
