@@ -4,6 +4,9 @@ import { useError } from './error.context';
 
 const AuthContext = createContext({});
 
+const HOST = process.env.REACT_APP_API_HOST || 'localhost';
+const PROTOCOL = process.env.REACT_APP_API_PROTOCOL || 'http';
+
 const AuthProvider = ({ children }) => {
   const history = useHistory();
   const { setErrorMessage } = useError();
@@ -23,7 +26,7 @@ const AuthProvider = ({ children }) => {
   const signIn = async ({ email, password }) => {
     setIsLoading(true);
     // Fazer a chamada para API
-    const response = await fetch('http://localhost:3001/login', {
+    const response = await fetch(`${PROTOCOL}://${HOST}:3001/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/json'
@@ -63,7 +66,7 @@ const AuthProvider = ({ children }) => {
 
   const getUser = async (token) => {
     try {
-      const response = await fetch('http://localhost:3001/users/me', {
+      const response = await fetch(`${PROTOCOL}://${HOST}:3001/USERS/ME`, {
         method: 'GET',
         headers: {
           'Content-Type': 'Application/json',

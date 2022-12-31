@@ -12,13 +12,13 @@ const suffix = {
 };
 
 const options = {
-  host: process.env.MYSQL_HOST || 'localhost',
-  port: process.env.MYSQL_PORT || '3306',
+  host: process.env.MYSQLHOST || 'localhost',
+  port: process.env.MYSQLPORT || '3306',
   database: 
-    `${process.env.MYSQL_DB_NAME || 'blogs-api'}${suffix[environment] || suffix.test}`,
-  username: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD 
-    ? readFileSync(process.env.MYSQL_PASSWORD)
+    `${process.env.MYSQLDATABASE || 'blogs-api'}${suffix[environment] || suffix.test}`,
+  username: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD 
+    ? readFileSync(process.env.MYSQLPASSWORD)
     : null,
   dialect: 'mysql',
   dialectOptions: {
@@ -34,4 +34,7 @@ module.exports = {
   test: {
     ...options,
   },
+  production: {
+    ...options,
+  }
 };

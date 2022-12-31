@@ -33,11 +33,11 @@ services:
     secrets:
       - db-password
     environment:
-      - MYSQL_HOST=db
-      - MYSQL_PORT=3306
-      - MYSQL_DB_NAME=blog-api
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=/run/secrets/db-password
+      - MYSQLHOST=db
+      - MYSQLPORT=3306
+      - MYSQLDATABASE=blog-api
+      - MYSQLUSER=root
+      - MYSQLPASSWORD=/run/secrets/db-password
     networks:
       - public
       - private
