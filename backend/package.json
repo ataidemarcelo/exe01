@@ -4,6 +4,7 @@
   "description": "Treino 01",
   "main": "./src/server.js",
   "scripts": {
+    "prestart": "npx sequelize db:create && npx sequelize db:migrate",
     "start": "node ./src/server.js",
     "dev": "NODE_ENV=development nodemon ./src/server.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
