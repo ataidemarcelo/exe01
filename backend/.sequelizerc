@@ -1,3 +1,5 @@
+const { resolve } = require('path');
+
 module.exports = {
   'config': resolve('src', 'config', 'config.js'),
   'models-path': resolve('src', 'models'),
