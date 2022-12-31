@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "start": "node ./src/server.js",
-    "dev": "NODE_ENV=development nodemon ./src/server.js",
+    "dev": "NODE_ENV=production nodemon ./src/server.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "repository": {
