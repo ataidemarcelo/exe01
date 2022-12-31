@@ -6,6 +6,9 @@ import { useError } from '../../context/error.context';
 
 import styles from  './signup.module.css';
 
+const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001s';
+const PROTOCOL = process.env.REACT_APP_API_PROTOCOL || 'http';
+
 function SignUp() {
   const [dataForm, setDataForm] = useState({ name: '', email: '', password: '', passwordConfirmation: '' });
   const { errorMessage, setErrorMessage } = useError();
@@ -43,7 +46,7 @@ function SignUp() {
 
   const createNewUser = async ({ name, email, password, passwordConfirmation }) => {
     try {
-      const response = await fetch('http://localhost:3001/users', {
+      const response = await fetch(`${PROTOCOL}://${HOST}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
