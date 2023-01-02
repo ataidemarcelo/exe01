@@ -23,7 +23,7 @@ function MainHeader() {
 
         <h1>
           <Link to="/">
-            Blog Api
+            Blog Api Dev
           </Link>
         </h1>
 
