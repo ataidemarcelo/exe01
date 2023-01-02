@@ -17,9 +17,7 @@ const options = {
   database: 
     `${process.env.MYSQLDATABASE || 'blogs-api'}${suffix[environment] || suffix.test}`,
   username: process.env.MYSQLUSER || 'root',
-  password: process.env.MYSQLPASSWORD 
-    ? readFileSync('./database/password.txt')
-    : null,
+  password: process.env.MYSQLPASSWORD,
   dialect: 'mysql',
   dialectOptions: {
     timezone: 'Z',
