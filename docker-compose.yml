@@ -4,6 +4,7 @@ services:
   front:
     container_name: front
     build: ./dockerfiles/frontend
+    image: node16-alpine/front
     ports:
       - 3000:3000
     depends_on:
@@ -21,6 +22,7 @@ services:
   back:
     container_name: back
     build: ./dockerfiles/backend
+    image: node16-alpine/back
     ports:
       - 3001:3001
     depends_on:
