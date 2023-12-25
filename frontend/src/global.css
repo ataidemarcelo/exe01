@@ -5,6 +5,7 @@
   --l-link-color: #222;
   --l-link-color-hover: #ec5840;
   --l-border-bottom: 1px solid #d1cccc;
+  --l-color-error-msg: red;
 
   /* Dark Mode */
   --d-bg: #181820;
@@ -13,6 +14,7 @@
   --d-link-color-hover: #3cc368;
   --d-border-bottom: 1px solid #5f5b5b;
   --d-bg-input: #5f5b5b;
+  --d-color-error-msg: yellow;
 }
 
 /* ============== Common ================ */
@@ -85,6 +87,10 @@ form input::placeholder {
 #light form button:disabled {
   background-color: #24e4d1;
 }
+
+#light span {
+  color: var(--l-color-error-msg);
+}
 /* ============== Dark Mode ================ */
 
 #dark {
@@ -139,4 +145,8 @@ form input::placeholder {
   background-color: #cdd6d5;
   cursor: not-allowed;
   color: #afb1b3;
+}
+
+#dark span {
+  color: var(--d-color-error-msg);
 }
