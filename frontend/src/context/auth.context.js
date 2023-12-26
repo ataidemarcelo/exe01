@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('@BlogAPI:email:', userData.email);
     localStorage.setItem('@BlogAPI:user:', JSON.stringify(userData));
     setUser(userData);
-    history.push('/posts');
+    history.push('/dashboard');
 
     setIsLoading(false);
   };
