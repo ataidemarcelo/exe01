@@ -45,6 +45,12 @@ const AuthProvider = ({ children }) => {
       throw newError;
     }
 
+    if (response.status === 429) {
+      const newError = new Error('Too many requests, please try again later.!');
+      setIsLoading(false);
+      throw newError;
+    }
+
     const { token, user: userData } = result;
 
     localStorage.setItem('@BlogAPI:token:', token);
