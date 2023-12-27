@@ -10,8 +10,8 @@ const { errorMiddleware } = require('./middlewares');
 const app = express();
 
 const limit = {
-  timeRequests: 3 * 60 * 1000,
-  maxRequests: 3
+  timeRequests: 5 * 60 * 1000,
+  maxRequests: 10
 };
 
 
