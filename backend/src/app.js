@@ -46,4 +46,18 @@ app.use('/*', (req, res) => {
 
 app.use(errorMiddleware);
 
+
+// Garante que a aplicação não continue em um estado potencialmente inconsistente.
+// Tratamento de Rejeições de Promessas não tratadas
+process.on('unhandledRejection', (reason, _promise) => {
+  console.error('Rejeição de Promessa não tratada:', reason);
+  throw reason; // Re-lança a exceção para ser capturada por uncaughtException
+});
+
+// Tratamento global de exceções não capturadas
+process.on('uncaughtException', err => {
+  console.error('Erro não capturado:', err);
+  process.exit(1); // Encerrar o processo após tratamento de erro
+});
+
 module.exports = app;
