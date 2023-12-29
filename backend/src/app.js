@@ -1,6 +1,7 @@
 const express = require('express');
 require('express-async-errors');
 require('dotenv').config();
+const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 
@@ -14,7 +15,7 @@ const limit = {
   maxRequests: 10
 };
 
-
+app.use(helmet());
 app.use(express.json({ limit: '1kb' }));
 app.use(cors());
 
