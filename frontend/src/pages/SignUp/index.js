@@ -6,7 +6,7 @@ import { useError } from '../../context/error.context';
 
 import styles from  './signup.module.css';
 
-const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001s';
+const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001';
 const PROTOCOL = process.env.REACT_APP_API_PROTOCOL || 'http';
 
 function SignUp() {
