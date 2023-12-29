@@ -15,7 +15,7 @@ const limit = {
 };
 
 
-app.use(express.json());
+app.use(express.json({ limit: '1kb' }));
 app.use(cors());
 
 app.set('trust proxy', true);
