@@ -32,14 +32,12 @@ services:
     command: bash -c "npm install && npm run dev"
     tty: true
     stdin_open: true
-    secrets:
-      - db-password
     environment:
       - MYSQLHOST=db
       - MYSQLPORT=3306
       - MYSQLDATABASE=blog-api
       - MYSQLUSER=root
-      - MYSQLPASSWORD=/run/secrets/db-password
+      - MYSQLPASSWORD=secret
     networks:
       - public
       - private
@@ -53,15 +51,10 @@ services:
     volumes:
       - ./backend/database/data/:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
-    secrets:
-      - db-password
+      - MYSQL_ROOT_PASSWORD=secret
     networks:
       - private
 
 networks:
   public:
   private:
-secrets:
-  db-password:
-    file: backend/database/password.txt
