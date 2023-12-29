@@ -30,8 +30,6 @@ app.use(rateLimit({
 
 app.use(routers);
 
-app.get('/ping', (_req, res) => res.status(200).json({ message: 'Pong!' }));
-
 app.get('/status', (_req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
